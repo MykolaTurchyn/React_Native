@@ -1,14 +1,15 @@
-import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StatusBar, StyleSheet} from 'react-native';
+import {View, Text, Button, TouchableOpacity} from 'react-native';
 import Users from "./components/Users";
 
-export default function App() {
+const App = () => {
     return (
         <View>
-            <StatusBar style="auto"/>
             <Users/>
         </View>
     );
-}
-const styles = StyleSheet.create({});
+};
+export default App;
+
+let styles = StyleSheet.create({});

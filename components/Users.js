@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, View} from 'react-native';
-import {getUsers} from "../services/Api";
+import {FlatList, StyleSheet} from 'react-native';
+import {View, Text, Button, TouchableOpacity} from 'react-native';
 import User from "./User";
+import {getUsers} from "../services/Api";
 
 const Users = () => {
-    let [users, setUsers] = useState();
-    useEffect(() => {
-        getUsers().then(value => setUsers)
-    }, [])
+    let [users, setUsers] = useState([]);
+    useEffect(() =>{
+        getUsers().then(value => setUsers([...value])), [users]})
     return (
-        <View>
-            <FlatList
-                data={users}
-                renderItem={(item) => {
-                    return <User item={item}/>
-
-                }}
-                keyExtractor={item => {item.id}}
-            >
+        <View style={styles.usersBox}>
+            <FlatList data={users}
+                      renderItem={({item}) => <User item={item}/>}
+                      keyExtractor={item => '' + item.id}>
             </FlatList>
+
         </View>
-    );
-};
+    )
+}
 export default Users;
 
-// let styles = StyleSheet.create({});
+let styles = StyleSheet.create({
+    usersBox:{
+        marginTop: 50,
+    alignItems:"center"
+
+    }
+});
